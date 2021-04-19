@@ -272,7 +272,6 @@ resource "azurerm_linux_virtual_machine" "main" {
     environment = "DevOpsIaaSProj"
   }
 }
-}
 
 resource "azurerm_managed_disk" "main" {
   name                 = "${var.prefix}-ManagedDisk01"
