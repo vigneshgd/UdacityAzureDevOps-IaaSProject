@@ -17,12 +17,12 @@ Below are the prerequisites:
 1. Download the three files -  main.tf, variables.tf and server.json from this repository
 2. Store the files in a desired empty directory 
 
-Following are details about the terraform and packer templates:
+**Following are details about the terraform and packer templates:**
 
-main.tf
+**main.tf**
 The file "main.tf" is your primary script that contains definition of resources to be created and detailed specifications of each resource in infrastructure element. Resources like resource groups, networks, subnets, NIC, Network Security group, Load balancer, availabilility sets, data disks and VMs are defined in this template.
 
-variables.tf
+**variables.tf**
 The variables.tf file contains refences for all the variables used in main.tf. Each of the variable values in variables.tf file can be customized either directly on the file or the variables values can be set during runtime when you execute the 'terraform apply'. 
 	
 	If you wish to change the values on the file variables.tf, then edit it using a standard text editor like notepad++, atom, etc. In variables.tf, Change value of the field 'default = ' to your desired value. 
@@ -51,11 +51,11 @@ nb_disks_per_instance
 variables.tf file has a description for each of these files.
 
 
-server.json
+**server.json**
 This is a packer template that is used to upload image onto your azure subscription. 
 			
 
-Instructions to deploy:
+**Instructions to deploy:**
 
 Open PowerSell or AzCLI terminal, change to the execution directory where you have main.tf, variables.tf and server.json and run the command command: 
 	
@@ -87,7 +87,7 @@ To begin with, we will create/upload OS image to Azure subscription. Using a tex
 
 On line#5, Replace the xxxxxxxxxxxxxxxxxxxxxxxxxxx with your Azure subscription ID.
 
-  "subscription_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  	"subscription_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 Azure subscription ID can be obtained from:
 			- Aure portal -> Home -> Subscription ID
