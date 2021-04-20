@@ -133,7 +133,9 @@ Review  the output of the previous command, and make sure the deployment & resou
 
 The actual deployment of resources begins on execution of the above command. Resources like resource groups, networks, subnets, NIC, Network Security group, Load balancer, availabilility sets, data disks and VMs will be created. Once the command finishes running, make sure there is no errors or execution failures. Logon on Azure portal, and navigate to Home -> Resource Groups. Click on your resource group and validate all the planned/desired resources have been created. Make sure the number of VMs you configured in the variables.tf file has been created and desired no of disks attached to every VM. Check for the Load balancer is present and it has the correct public IP address. Validate the network security group and the security rules within it. You can perform more check like VMs not being reachable directly from internet and also inter-VM reachability works fine. 
 
-Open a web browser on your PC and enter the URL   http://<Public IP address of Load Balancer front end>:80/index.html 
+Open a web browser on your PC and enter the URL   
+
+	http://<Public IP address of Load Balancer front end>:80/index.html 
 
 Make sure you see the text - Hello, World!
 
