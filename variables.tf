@@ -1,5 +1,6 @@
 variable "prefix" {
-  description = "The prefix which should be used for all resources in this example"
+  description = "The prefix which should be used for all resources in this example, eg DevOps"
+  default = "DevOps"
 }
 
 variable "location" {
@@ -9,12 +10,6 @@ variable "location" {
 
 variable "username" {
   description = "User name for the VM being created"
-}
-
-variable "LbBeAddrPoolAssociationIp" {
-  description = "IP address for Load balancer Back End Addr pool association"
-}
-
-variable "numvms" {
-  description = "Number of VMs to be created"
+  type        = string
+  default = "vg2381"
 }
