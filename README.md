@@ -33,20 +33,20 @@ The variables.tf file contains refences for all the variables used in main.tf. E
 
 List of variables in variables.tf:
 
-prefix
-location
-username
-LbBkEndPoolAddr
-VirtNetCIDR
-subNet4virtNet
-vmCount
-dataDiskCount
-feportstart
-feportend
-beport
-lbHttpPort
-instances
-nb_disks_per_instance
+	prefix
+	location
+	username
+	LbBkEndPoolAddr
+	VirtNetCIDR
+	subNet4virtNet
+	vmCount
+	dataDiskCount
+	feportstart
+	feportend
+	beport
+	lbHttpPort
+	instances
+	nb_disks_per_instance
 
 variables.tf file has a description for each of these files.
 
