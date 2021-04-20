@@ -1,5 +1,5 @@
 # UdacityAzureDevOps
-Azure DevOps - Azure Infrastructure Operations Project: Deploying A Webserver
+Azure DevOps - Azure IaaS Project: Deploying A Webserver
 
 **Introduction**
 This is a project that uses a Packer template and a Terraform template to deploy a customizable, scalable web server in Azure.
