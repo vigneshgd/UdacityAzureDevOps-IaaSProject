@@ -15,7 +15,7 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "main" {
-  name     = "${var.prefix}resourcegroup"
+  name     = "${var.prefix}rg01"
   location = var.location
 }
 resource "azurerm_virtual_network" "main" {
@@ -220,7 +220,7 @@ resource "azurerm_lb_probe" "main" {
 }
 
 resource "azurerm_availability_set" "availset" {
-  name                = "${var.prefix}-availability-set"
+  name                = "${var.prefix}-availability-set01"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
@@ -231,15 +231,19 @@ resource "azurerm_availability_set" "availset" {
 
 resource "azurerm_linux_virtual_machine" "main" {
   count                 = length(var.instances)
-  name                  = "vm-${element(var.instances, count.index)}"
+  name                  = element(var.instances, count.index)
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   availability_set_id = azurerm_availability_set.availset.id
   size                = "Standard_D2s_v3"
   admin_username      = "var.username"
   admin_password      = "Password@1new"
+  disable_password_authentication = "true"
   network_interface_ids = [element(azurerm_network_interface.main.*.id, count.index)]
-
+  admin_ssh_key {
+  username   = "var.username"
+  public_key = file("~/.ssh/id_rsa.pub")
+  }
   os_disk {
     name                 = "osdisk-${element(var.instances, count.index)}-${count.index}"
     caching              = "ReadWrite"
@@ -254,8 +258,8 @@ resource "azurerm_linux_virtual_machine" "main" {
 }
 
 resource "azurerm_managed_disk" "managed_disk" {
-    for_each             = toset([for j in local.datadisk_lun_map : j.datadisk_name])
-    name                 = each.key
+    count                = length(var.instances) * var.nb_disks_per_instance
+    name                 = element(var.instances, count.index)
     location             = azurerm_resource_group.main.location
     resource_group_name  = azurerm_resource_group.main.name
     storage_account_type = "Standard_LRS"
@@ -264,9 +268,9 @@ resource "azurerm_managed_disk" "managed_disk" {
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "managed_disk_attach" {
-    for_each           = toset([for j in local.datadisk_lun_map : j.datadisk_name])
-    managed_disk_id    = azurerm_managed_disk.managed_disk[each.key].id
-    virtual_machine_id = azurerm_linux_virtual_machine.main[element(split("_", each.key), 2)].id
-    lun                = lookup(local.luns, each.key)
-    caching            = "ReadWrite"
+  count              = length(var.instances) * var.nb_disks_per_instance
+  managed_disk_id    = azurerm_managed_disk.managed_disk.*.id[count.index]
+  virtual_machine_id = azurerm_linux_virtual_machine.main.*.id[ceil((count.index + 1) * 1.0 / var.nb_disks_per_instance) - 1]
+  lun                = count.index + 10
+  caching            = "ReadWrite"
 }

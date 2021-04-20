@@ -71,7 +71,7 @@ variable "lbHttpPort" {
 variable "instances" {
   description = "Enter the name of the VMs to be created in the comma seperated format for eg: AZ-VM-001, AZ-VM-002, AZ-VM-003 "
   type = list(string)
-  default = ["AZ-VM-1", "AZ-VM-2", "AZ-VM-3"]
+  default = ["vm-test-1", "vm-test-2", "vm-test-3"]
 }
 
 variable "nb_disks_per_instance" {

@@ -2,7 +2,7 @@
 	"variables": {
 		"client_id": "{{env `ARM_CLIENT_ID`}}",
 		"client_secret": "{{env `ARM_CLIENT_SECRET`}}",
-		"subscription_id": "97753398-f685-4bc7-a3e9-9b86929f6c92"
+		"subscription_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 	},
 	"builders": [{
 		"type": "azure-arm",
