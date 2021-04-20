@@ -8,10 +8,14 @@ Read through this README file fully before proceeding with deploying the templat
 
 **Prerequisites**: 
 Below are the prerequisites:
-		a. An azure account and a valid & active subscription with room to create at least 1 Resource Group and about 20 resources under the resource  group that includes Virtual networks, subnets, private & public IP, OS Image, disks, VMs etc
-		b. Latest version of Terraform installation on your PC or env. Refer (https://www.terraform.io/downloads.html)
-		c. Latest version of Packer installation on your PC or env. Refer https://www.packer.io/downloads/
-		d. An installation of Azure CLI on your PC. Refer https://docs.microsoft.com/en-us/cli/azure/
+
+a. An azure account and a valid & active subscription with room to create at least 1 Resource Group and about 20 resources under the resource  group that includes Virtual networks, subnets, private & public IP, OS Image, disks, VMs etc
+
+b. Latest version of Terraform installation on your PC or env. Refer (https://www.terraform.io/downloads.html)
+
+c. Latest version of Packer installation on your PC or env. Refer https://www.packer.io/downloads/
+
+d. An installation of Azure CLI on your PC. Refer https://docs.microsoft.com/en-us/cli/azure/
 
 **Getting Started:**
 1. Download the three files -  main.tf, variables.tf and server.json from this repository
