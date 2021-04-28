@@ -229,6 +229,15 @@ resource "azurerm_availability_set" "availset" {
   }
 }
 
+data "azurerm_image" "ubuntuImage" {
+  name = "DevOpsUbuntu-18.04"
+  resource_group_name = "PACKERRG"
+}
+
+output "image_id" {
+  value = "/subscriptions/97753398-f685-4bc7-a3e9-9b86929f6c92/resourceGroups/PACKERRG/providers/Microsoft.Compute/images/DevOpsUbuntu-18.04"
+}
+
 resource "azurerm_linux_virtual_machine" "main" {
   count                 = length(var.instances)
   name                  = element(var.instances, count.index)
@@ -250,10 +259,7 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_type = "Standard_LRS"
   }
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
+    id = "/subscriptions/97753398-f685-4bc7-a3e9-9b86929f6c92/resourceGroups/PACKERRG/providers/Microsoft.Compute/images/DevOpsUbuntu-18.04"
   }
 }
 
